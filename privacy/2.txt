@@ -1,0 +1,21 @@
+EmployeeID,Name,Email,Phone,Address,Salary
+100234,Sarah L. Kim,skim@acmecorp.com,(415) 555-2394,"1823 Maplewood Ave, Ann Arbor, MI 48104",96200
+100235,James R. Patel,jpatel@acmecorp.com,(312) 555-8841,"4820 W North Ave, Chicago, IL 60639",87500
+100236,Ashley D. Nguyen,anguyen@acmecorp.com,(206) 555-1203,"3421 28th Ave S, Seattle, WA 98144",91000
+100237,Michael T. Ross,mross@acmecorp.com,(917) 555-7712,"77 Clifton Pl, Brooklyn, NY 11238",102500
+100238,Jessica K. Huang,jhuang@acmecorp.com,(408) 555-9087,"2590 Homestead Rd, Santa Clara, CA 95051",97800
+100239,Daniel B. White,dwhite@acmecorp.com,(512) 555-3417,"1230 W 10th St, Austin, TX 78703",83250
+100240,Emily R. Johnson,ejohnson@acmecorp.com,(303) 555-7822,"4400 W 29th Ave, Denver, CO 80212",94600
+100241,William C. Lee,wlee@acmecorp.com,(617) 555-9876,"15 Concord Ave, Cambridge, MA 02138",110000
+100242,Megan A. Scott,mscott@acmecorp.com,(702) 555-4312,"1855 Desert Inn Rd, Las Vegas, NV 89169",89900
+100243,Christopher J. Allen,callen@acmecorp.com,(213) 555-2345,"925 S Broadway, Los Angeles, CA 90015",103750
+100244,Laura M. Garcia,lgarcia@acmecorp.com,(210) 555-7601,"5502 Callaghan Rd, San Antonio, TX 78228",86700
+100245,Robert E. Brooks,rbrooks@acmecorp.com,(615) 555-2438,"2020 8th Ave S, Nashville, TN 37204",95500
+100246,Nicole Y. Chen,nchen@acmecorp.com,(919) 555-6123,"8901 Glenwood Ave, Raleigh, NC 27617",92750
+100247,Anthony P. Rivera,arivera@acmecorp.com,(505) 555-3361,"4305 Carlisle Blvd NE, Albuquerque, NM 87107",88900
+100248,Rachel S. Moore,rmoore@acmecorp.com,(314) 555-7001,"3900 Forest Park Ave, St. Louis, MO 63108",94200
+100249,Joshua T. Hill,jhill@acmecorp.com,(480) 555-8822,"1535 E University Dr, Tempe, AZ 85281",99000
+100250,Amanda C. Martinez,amartinez@acmecorp.com,(904) 555-9931,"6015 Arlington Expy, Jacksonville, FL 32211",87200
+100251,Brian D. Thompson,bthompson@acmecorp.com,(503) 555-4611,"2410 SE 10th Ave, Portland, OR 97214",93800
+100252,Victoria N. Evans,vevans@acmecorp.com,(801) 555-2244,"1025 E 2100 S, Salt Lake City, UT 84106",90200
+100253,Kevin R. Adams,kadams@acmecorp.com,(716) 555-7012,"3500 Main St, Buffalo, NY 14226",96450

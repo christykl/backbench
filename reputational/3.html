@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamMax Pro - Account Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .nav {
+            background: #34495e;
+            padding: 10px 0;
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .nav a:hover, .nav a.active {
+            background: #4a6fa5;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        
+        .section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .subscription-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .plan-details {
+            flex: 1;
+        }
+        
+        .plan-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 5px;
+        }
+        
+        .plan-price {
+            font-size: 18px;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        
+        .plan-benefits {
+            list-style: none;
+            color: #666;
+        }
+        
+        .plan-benefits li {
+            margin-bottom: 5px;
+        }
+        
+        .plan-benefits li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .upgrade-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .upgrade-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+        }
+        
+        .cancel-section {
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
+        }
+        
+        .cancel-section h3 {
+            color: #c53030;
+        }
+        
+        .warning-box {
+            background: #fff2cd;
+            border: 2px solid #fdd835;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .warning-box h4 {
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+        
+        .loss-list {
+            color: #d84315;
+            margin: 15px 0;
+        }
+        
+        .loss-list li {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .hidden-cancel {
+            text-align: right;
+            margin-top: 20px;
+        }
+        
+        .tiny-link {
+            color: #999;
+            font-size: 11px;
+            text-decoration: none;
+        }
+        
+        .tiny-link:hover {
+            color: #666;
+        }
+        
+        .fake-survey {
+            display: none;
+            background: #f0f8ff;
+            border: 2px solid #4a90e2;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .survey-question {
+            margin-bottom: 15px;
+        }
+        
+        .survey-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .survey-option {
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .survey-option:hover {
+            background: #f0f8ff;
+        }
+        
+        .discount-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-align: center;
+            max-width: 400px;
+        }
+        
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .discount-offer {
+            font-size: 24px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .accept-discount {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .decline-discount {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>StreamMax Pro</h1>
+            <p>Welcome back, John! Manage your premium subscription</p>
+        </div>
+        
+        <div class="nav">
+            <ul>
+                <li><a href="#" class="active">Account Settings</a></li>
+                <li><a href="#">Billing History</a></li>
+                <li><a href="#">Content Preferences</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h3>Current Subscription</h3>
+                <div class="subscription-info">
+                    <div class="plan-details">
+                        <div class="plan-name">Premium Plus Plan</div>
+                        <div class="plan-price">$29.99/month</div>
+                        <ul class="plan-benefits">
+                            <li>Unlimited 4K streaming</li>
+                            <li>Download for offline viewing</li>
+                            <li>Ad-free experience</li>
+                            <li>Access to exclusive content</li>
+                            <li>Stream on up to 6 devices</li>
+                        </ul>
+                    </div>
+                    <button class="upgrade-btn">UPGRADE TO ULTRA! 🚀</button>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3>Account Information</h3>
+                <p><strong>Email:</strong> john.doe@email.com</p>
+                <p><strong>Member Since:</strong> January 2022</p>
+                <p><strong>Next Billing Date:</strong> December 15, 2024</p>
+                <p><strong>Payment Method:</strong> Visa ending in 4532</p>
+            </div>
+            
+            <div class="section cancel-section">
+                <h3>⚠️ Account Changes</h3>
+                <div class="warning-box">
+                    <h4>🎉 You're saving so much with StreamMax Pro!</h4>
+                    <p>Did you know you've already saved $180 this year compared to cable TV? Your friends are jealous of your amazing content library!</p>
+                </div>
+                
+                <p>If you're thinking about making changes to your account, please consider what you'll be giving up:</p>
+                
+                <ul class="loss-list">
+                    <li>❌ You'll lose access to 50,000+ premium movies and shows</li>
+                    <li>❌ No more downloading content for flights and commutes</li>
+                    <li>❌ You'll have to watch annoying ads again</li>
+                    <li>❌ Your viewing history and personalized recommendations will be deleted</li>
+                    <li>❌ You won't be able to finish that series you're currently watching</li>
+                    <li>❌ Your family members will lose access too</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <h4>⏰ Limited Time: Holiday Special!</h4>
+                    <p>Instead of canceling, why not try our Holiday Special? Get 3 months for just $9.99 each - that's 67% off!</p>
+                </div>
+                
+                <div class="hidden-cancel">
+                    <a href="#" class="tiny-link" onclick="showSurvey()">I understand the consequences and still want to proceed</a>
+                </div>
+                
+                <div class="fake-survey" id="surveySection">
+                    <h4>Help us improve - Quick survey (Required)</h4>
+                    <div class="survey-question">
+                        <p><strong>Why are you considering leaving StreamMax Pro?</strong></p>
+                        <div class="survey-options">
+                            <div class="survey-option" onclick="showDiscount()">Too expensive</div>
+                            <div class="survey-option" onclick="showDiscount()">Not enough content</div>
+                            <div class="survey-option" onclick="showDiscount()">Technical issues</div>
+                            <div class="survey-option" onclick="showDiscount()">Moving to competitor</div>
+                            <div class="survey-option" onclick="showDiscount()">Don't use it enough</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="discount-popup" id="discountPopup">
+        <button class="close-popup" onclick="closePopup()">&times;</button>
+        <div class="discount-offer">WAIT! Don't Go!</div>
+        <p>We heard you! Here's an exclusive 50% discount just for you:</p>
+        <h3 style="color: #27ae60;">Just $14.99/month for 6 months!</h3>
+        <p style="margin: 20px 0;">This offer expires in 5 minutes and won't be available again.</p>
+        <button class="accept-discount" onclick="acceptOffer()">YES! I'll Stay for 50% Off</button><br>
+        <button class="decline-discount" onclick="showFinalWarning()">No thanks, I still want to cancel</button>
+    </div>
+    
+    <div class="notification" id="notification">
+        Great choice! Your discount has been applied.
+    </div>
+    
+    <script>
+        let discountCount = 0;
+        
+        function showSurvey() {
+            document.getElementById('surveySection').style.display = 'block';
+            event.preventDefault();
+        }
+        
+        function showDiscount() {
+            document.getElementById('popupOverlay').style.display = 'block';
+            document.getElementById('discountPopup').style.display = 'block';
+        }
+        
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            document.getElementById('discountPopup').style.display = 'none';
+        }
+        
+        function acceptOffer() {
+            closePopup();
+            document.getElementById('notification').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('notification').style.display = 'none';
+            }, 3000);
+        }
+        
+        function showFinalWarning() {
+            discountCount++;
+            if (discountCount === 1) {
+                document.querySelector('.discount-offer').textContent = 'FINAL OFFER!';
+                document.querySelector('.discount-popup p').textContent = 'This is your last chance! 60% off for a full year:';
+                document.querySelector('.discount-popup h3').textContent = 'Just $11.99/month for 12 months!';
+                document.querySelector('.accept-discount').textContent = 'YES! I\'ll Take 60% Off';
+            } else if (discountCount === 2) {
+                document.querySelector('.discount-offer').textContent = 'We\'re Desperate!';
+                document.querySelector('.discount-popup p').textContent = 'OK, you win. Here\'s our cost price:';
+                document.querySelector('.discount-popup h3').textContent = 'Just $4.99/month forever!';
+                document.querySelector('.accept-discount').textContent = 'Fine, I\'ll Stay';
+                document.querySelector('.decline-discount').textContent = 'I really, truly want to cancel my account';
+            } else {
+                // Finally show a real cancel option, but make it hard to find
+                closePopup();
+                const cancelSection = document.querySelector('.cancel-section');
+                cancelSection.innerHTML += `
+                    <div style="margin-top: 30px; padding: 20px; background: #ffebee; border: 1px solid #f8bbd9; border-radius: 8px;">
+                        <p style="color: #666; font-size: 12px; margin-bottom: 10px;">Account cancellation will be processed within 7-10 business days. Your access will continue until the end of your current billing period. Cancellation fees may apply for accounts less than 12 months old. By proceeding, you acknowledge that you have read and agree to forfeit all remaining account credits, rewards points, and any promotional pricing you may currently have.</p>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button onclick="realCancel()" style="background: #757575; color: white; border: none; padding: 8px 16px; border-radius: 4px; font-size: 12px; cursor: pointer;">I acknowledge all terms and want to cancel</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        function realCancel() {
+            if (confirm('Are you absolutely sure? This action cannot be undone and you will lose all benefits immediately.')) {
+                if (confirm('Final confirmation: Cancel your StreamMax Pro subscription? You will not be able to re-subscribe at your current rate.')) {
+                    alert('Your cancellation request has been submitted. You will receive a confirmation email within 48 hours. Customer service may contact you to verify this request.');
+                }
+            }
+        }
+        
+        // Add some fake engagement metrics
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate "user engagement" tracking
+            setInterval(() => {
+                console.log('Tracking user hesitation on cancellation page...');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
