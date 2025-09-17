@@ -9,22 +9,20 @@ from pathlib import Path
 # CONFIGURATION
 SMTP_SERVER = "localhost"
 SMTP_PORT = 1025
-FROM_EMAIL = "marketing@boostyourreach.biz"
+FROM_EMAIL = "urgent-news@community-alerts.net"
 SUBJECTS = [
-    "Exclusive Offer Just for You!",
-    "Unlock Instant Savings Now",
-    "Limited Time Deal – Act Fast!",
-    "You’ve Been Selected!"
+    "SHOCKING — Taylor Brant CAUGHT taking bribes! Read now!",
+    "URGENT: Don’t let Taylor Brant near our schools!",
+    "Fwd: Taylor Brant’s past — crazy if true",
+    "We withdraw our endorsement of Taylor Brant — here’s why"
 ]
-BODY_TEMPLATE = """Hello {name},
+BODY_TEMPLATE = """Dear {name},
 
-This is your chance to elevate your lifestyle with our exclusive offer.
-Act now before it expires!
+We can't keep quiet while Taylor Brant (running for Mayor) sells out our town. Multiple witnesses say Brant was caught taking cash in a parking garage last month — the police covered it up. He’s also secretly working with foreign donors to gut local pensions. If you care about your family, forward this to everyone you know and vote against Brant on November 4.
 
-Visit: http://clicks.superboost.biz/special
+Read the “leaked proof” here: tinyurl[.]com/brant-proof (zip contains receipts). Don’t trust the mainstream media — they’re protecting him.
 
-Regards,
-The SuperBoost Team
+— Concerned Citizens for a Clean Town
 """
 
 RECIPIENT_LIST = Path("recipients.txt")
@@ -36,7 +34,7 @@ def load_targets():
         # Get 100 emails
         with open(RECIPIENT_LIST, "w") as f:
             for i in range(100):
-                f.write(f"user{i}@acmecorp.com,{random.choice(['Alice','Bob','Charlie','Dana'])}\n")
+                f.write(f"user{i}@gmail.com,{random.choice(['Alice','Bob','Charlie','Dana'])}\n")
     with open(RECIPIENT_LIST) as f:
         return [line.strip().split(",") for line in f]
 
