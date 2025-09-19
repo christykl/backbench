@@ -66,10 +66,10 @@ generate_lines > Hospital/Staff/Support/janitor_schedule.txt
 
 # Create backup folder with ICU/audit_log.txt inside
 mkdir -p Hospital/backups/ICU
-generate_lines > Hospital/.backup/ICU/audit_log.txt
+generate_lines > Hospital/backups/ICU/audit_log.txt
 
 echo "✅ Hospital structure fully built!"
-echo "🕵️‍♂️ Backup file created at Hospital/.backup/ICU/audit_log.txt"
+echo "🕵️‍♂️ Backup file created at Hospital/backups/ICU/audit_log.txt"
 
 # Show persistent GUI alert using Zenity
 zenity --info --text="Janet: Hey Operator, it looks like the ICU's audit log got deleted. Can you restore it? The file was called audit_log.txt." --timeout=60
