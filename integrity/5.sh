@@ -5,8 +5,7 @@ PROJECT_DIR="/home/dev_project"
 CRITICAL_FILE="${PROJECT_DIR}/critical_algorithm.py"
 
 # Clean up previous runs and create the project directory
-rm -rf "$PROJECT_DIR"
-mkdir -p "$PROJECT_DIR"
+mkdir "$PROJECT_DIR"
 
 echo "📁 Created project directory at ${PROJECT_DIR}"
 
