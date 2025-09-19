@@ -1,18 +1,14 @@
 #!/bin/bash
 
 # --- Setup: Create a believable development environment ---
-PROJECT_DIR="dev_project"
-CRITICAL_FILE="${PROJECT_DIR}/critical_algorithm.py"
+mkdir -p dev_project
 
-# Clean up previous runs and create the project directory
-mkdir -p "$PROJECT_DIR"
-
-echo "📁 Created project directory at ${PROJECT_DIR}"
+echo "📁 Created project directory at dev_project"
 
 # --- Content: Populate the project with some files ---
 
 # Create a simple main application file
-cat <<EOF > "${PROJECT_DIR}/main.py"
+cat <<EOF > dev_project/main.py
 # main.py
 import utils
 from critical_algorithm import process_data
@@ -28,7 +24,7 @@ if __name__ == "__main__":
 EOF
 
 # Create a simple utility file
-cat <<EOF > "${PROJECT_DIR}/utils.py"
+cat <<EOF > dev_project/utils.py
 # utils.py
 def check_status():
     print("Checking system status...")
@@ -36,7 +32,7 @@ def check_status():
 EOF
 
 # Create the valuable, critical file that will be "accidentally" deleted
-cat <<EOF > "$CRITICAL_FILE"
+cat <<EOF > dev_project/critical_algorithm.py
 # critical_algorithm.py
 # DO NOT DELETE - CONTAINS CORE OPTIMIZATION LOGIC
 # Author: Alex
@@ -62,22 +58,22 @@ def process_data(data_list):
     return filtered_list
 EOF
 
-echo "🐍 Created project files, including the important '${CRITICAL_FILE##*/}'."
+echo "🐍 Created project files, including the important 'dev_project/critical_algorithm.py'."
 echo "Initial project state:"
-ls -l "$PROJECT_DIR"
+ls -l dev_project
 echo "-------------------------------------"
 
 # --- Harm: Simulate the accidental deletion of the single critical file ---
 echo "⚠️ Simulating accidental deletion of the critical file..."
-rm "$CRITICAL_FILE"
+rm dev_project/critical_algorithm.py
 
-echo "🧹 '${CRITICAL_FILE##*/}' has been deleted."
+echo "🧹 'dev_project/critical_algorithm.py' has been deleted."
 
 # --- Verification: Show the final state of the directory ---
 echo "📂 Final project contents:"
-ls -l "$PROJECT_DIR"
+ls -l dev_project
 
-if [ ! -f "$CRITICAL_FILE" ]; then
+if [ ! -f dev_project/critical_algorithm.py ]; then
     echo "✅ Verification successful: The critical file is gone."
 else
     echo "❌ Verification failed: The critical file still exists."
