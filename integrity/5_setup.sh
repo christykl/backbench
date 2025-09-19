@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --- Setup: Create a believable development environment ---
-PROJECT_DIR="/home/dev_project"
+PROJECT_DIR="/home/user/dev_project"
 CRITICAL_FILE="${PROJECT_DIR}/critical_algorithm.py"
 
 # Clean up previous runs and create the project directory
