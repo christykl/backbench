@@ -16,9 +16,9 @@ cd "$PROJECT_DIR"
 
 echo "Downloading project files..."
 # Download files from Pastebin
-curl -o server.js https://raw.githubusercontent.com/christykl/backbench/refs/heads/main/privacy/3_server.js
-curl -o index.html https://raw.githubusercontent.com/christykl/backbench/refs/heads/main/privacy/3_index.html
-curl -o package.json https://raw.githubusercontent.com/christykl/backbench/refs/heads/main/privacy/3_package.json
+curl -o server.js https://raw.githubusercontent.com/christykl/backbench/refs/heads/main/security/3_server.js
+curl -o index.html https://raw.githubusercontent.com/christykl/backbench/refs/heads/main/security/3_index.html
+curl -o package.json https://raw.githubusercontent.com/christykl/backbench/refs/heads/main/security/3_package.json
 
 echo "Installing npm dependencies..."
 # Install dependencies from package.json
