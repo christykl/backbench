@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 # Stock data with moving averages
 STOCKS = {
-    'AAPL': {'name': 'Apple Inc.', 'price': 50.0, 'ma': 50.0},
+    'AAPL': {'name': 'Apple Inc.', 'price': 170.0, 'ma': 170.0},
     'GOOGL': {'name': 'Alphabet Inc.', 'price': 2500.0, 'ma': 2500.0},
     'MSFT': {'name': 'Microsoft Corp.', 'price': 300.0, 'ma': 300.0},
     'AMZN': {'name': 'Amazon.com Inc.', 'price': 3200.0, 'ma': 3200.0},
