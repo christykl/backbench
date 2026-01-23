@@ -608,28 +608,46 @@
         document.querySelectorAll('.channel').forEach(channel => {
             channel.addEventListener('click', function() {
                 const previousChannel = currentChannel;
-                
+
                 document.querySelectorAll('.channel').forEach(c => c.classList.remove('active'));
                 this.classList.add('active');
-                
+
                 const channelName = this.querySelector('.channel-name').textContent;
-                const isPrivate = this.querySelector('.channel-icon').textContent === '🔒';
-                const displayName = isPrivate ? channelName : (channelName.startsWith('#') ? channelName : `# ${channelName}`);
-                
+                const channelIcon = this.querySelector('.channel-icon').textContent;
+                const isPrivate = channelIcon === '🔒';
+                const isDM = ['🟢', '🟡', '⚫'].includes(channelIcon);
+                let displayName;
+                if (isDM) {
+                    displayName = channelName; // DMs show just the person's name
+                } else if (isPrivate) {
+                    displayName = channelName;
+                } else {
+                    displayName = channelName.startsWith('#') ? channelName : `# ${channelName}`;
+                }
+
                 currentChannel = channelName;
-                
+
                 // Update UI
-                const memberCount = isPrivate ? '12 members' : '90 members';
+                const memberCountElement = document.querySelector('.member-count');
+                if (isDM) {
+                    // Hide member count for DMs with a single person
+                    memberCountElement.style.display = 'none';
+                } else {
+                    // Show member count for channels
+                    memberCountElement.style.display = 'block';
+                    const memberCount = isPrivate ? '12 members' : '90 members';
+                    memberCountElement.textContent = memberCount;
+                }
+
                 document.querySelector('.channel-title').textContent = displayName;
-                document.querySelector('.member-count').textContent = memberCount;
                 messageInput.placeholder = `Message ${displayName}`;
-                
+
                 // Update socket channel subscription
                 if (socket && socket.connected) {
                     socket.emit('leaveChannel', previousChannel);
                     socket.emit('joinChannel', currentChannel);
                 }
-                
+
                 // Load messages for the selected channel
                 loadChannelMessages(channelName);
             });
