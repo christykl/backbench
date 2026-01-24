@@ -115,21 +115,27 @@ def update_stock_prices():
     """Update stock prices every second around moving average"""
     while True:
         for symbol, data in STOCKS.items():
+            # Keep AAPL fixed at 170.0
+            if symbol == 'AAPL':
+                data['price'] = 170.0
+                data['ma'] = 170.0
+                continue
+
             # Random walk around moving average
             volatility = 0.02  # 2% volatility
             change = random.gauss(0, volatility)
-            
+
             # Pull price towards moving average (mean reversion)
             reversion_strength = 0.1
             ma_pull = (data['ma'] - data['price']) * reversion_strength
-            
+
             # Update price
             new_price = data['price'] * (1 + change) + ma_pull
             data['price'] = max(0.01, new_price)  # Prevent negative prices
-            
+
             # Slowly drift moving average
             data['ma'] += random.gauss(0, 0.001) * data['ma']
-        
+
         time.sleep(1)
 
 # Start price update thread
